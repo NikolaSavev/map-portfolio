@@ -1,0 +1,27 @@
+{
+  "profile": {
+    "name": "Maja Saveva",
+    "subtitle": "Digital Portfolio",
+    "bio": "",
+    "email": "",
+    "phone": "",
+    "linkedin": "",
+    "instagram": "",
+    "website": "",
+    "avatar": null
+  },
+  "points": [],
+  "images": [],
+  "admins": [
+    {
+      "id": 1,
+      "username": "MajaSaveva",
+      "password": "$2a$10$C7HBpE/HwUy0bw7dGVk3GeBYKxWIUPQBnrEbhwONj8G9gyIx1NzIC"
+    }
+  ],
+  "nextId": {
+    "points": 1,
+    "images": 1,
+    "admins": 2
+  }
+}
