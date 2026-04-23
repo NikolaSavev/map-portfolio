@@ -1,5 +1,6 @@
 import { MapContainer, TileLayer, Marker, Tooltip, Popup, ZoomControl, useMap } from 'react-leaflet'
 import L from 'leaflet'
+import { UPLOAD_BASE } from '../api'
 
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
@@ -89,7 +90,7 @@ function SingleMarker({ point, onPointClick }) {
           {point.thumbnail ? (
             <div style={{ background: '#f3f4f6', display: 'flex', justifyContent: 'center', alignItems: 'center', maxHeight: 130, overflow: 'hidden' }}>
               <img
-                src={point.thumbnail.url || `/uploads/${point.thumbnail.filename}`}
+                src={point.thumbnail.url || `${UPLOAD_BASE}/uploads/${point.thumbnail.filename}`}
                 alt={point.title}
                 style={{ width: '100%', height: 'auto', maxHeight: 130, objectFit: 'contain', display: 'block' }}
               />
@@ -154,7 +155,7 @@ function StackedMarker({ group, onPointClick }) {
               }}>
                 {point.thumbnail ? (
                   <img
-                    src={point.thumbnail.url || `/uploads/${point.thumbnail.filename}`}
+                    src={point.thumbnail.url || `${UPLOAD_BASE}/uploads/${point.thumbnail.filename}`}
                     alt={point.title}
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />

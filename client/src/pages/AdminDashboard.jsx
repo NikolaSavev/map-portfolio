@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { fetchPoints, deletePoint } from '../api'
+import { fetchPoints, deletePoint, UPLOAD_BASE } from '../api'
 import PointForm from '../components/PointForm'
 import ProfileForm from '../components/ProfileForm'
 
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
                 >
                   <div style={{ width: 56, height: 56, borderRadius: 8, overflow: 'hidden', flexShrink: 0, background: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     {point.thumbnail ? (
-                      <img src={`/uploads/${point.thumbnail.filename}`} alt={point.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      <img src={`${UPLOAD_BASE}/uploads/${point.thumbnail.filename}`} alt={point.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                     ) : (
                       <span style={{ fontSize: '1.4rem' }}>📍</span>
                     )}

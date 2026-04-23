@@ -1,6 +1,7 @@
 // In production: set VITE_API_URL to your Render.com backend URL
 // In development: leave unset — Vite proxy handles /api → localhost:3001
-const BASE = (import.meta.env.VITE_API_URL || '') + '/api'
+export const UPLOAD_BASE = import.meta.env.VITE_API_URL || ''
+const BASE = UPLOAD_BASE + '/api'
 
 function authHeaders() {
   const token = localStorage.getItem('map_portfolio_token')

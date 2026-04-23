@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import MapView from '../components/MapView'
 import PointModal from '../components/PointModal'
-import { fetchPoints, fetchProfile } from '../api'
+import { fetchPoints, fetchProfile, UPLOAD_BASE } from '../api'
 
 function toUrl(v) {
   if (!v) return v
@@ -85,7 +85,7 @@ function Avatar({ profile }) {
   if (profile.avatar) {
     return (
       <img
-        src={`/uploads/${profile.avatar}`}
+        src={`${UPLOAD_BASE}/uploads/${profile.avatar}`}
         alt={profile.name}
         style={{
           width: 40, height: 40, borderRadius: '50%',

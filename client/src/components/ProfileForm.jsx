@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { fetchProfile, updateProfile } from '../api'
+import { fetchProfile, updateProfile, UPLOAD_BASE } from '../api'
 
 const inputStyle = {
   display: 'block', width: '100%',
@@ -112,7 +112,7 @@ export default function ProfileForm() {
 
   if (loading) return <div style={{ padding: 40, textAlign: 'center', color: '#9ca3af' }}>Loading…</div>
 
-  const currentAvatar = avatarPreview || (profile.avatar ? `/uploads/${profile.avatar}` : null)
+  const currentAvatar = avatarPreview || (profile.avatar ? `${UPLOAD_BASE}/uploads/${profile.avatar}` : null)
   const initials = (profile.name || 'M').split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase()
 
   return (

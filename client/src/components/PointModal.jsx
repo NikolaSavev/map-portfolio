@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { UPLOAD_BASE } from '../api'
 
 export default function PointModal({ point, onClose }) {
   const [lightboxImg, setLightboxImg] = useState(null)
@@ -75,7 +76,7 @@ export default function PointModal({ point, onClose }) {
               maxHeight: '50vh', overflow: 'hidden',
             }}>
               <img
-                src={`/uploads/${heroImage.filename}`}
+                src={`${UPLOAD_BASE}/uploads/${heroImage.filename}`}
                 alt={point.title}
                 style={{ maxWidth: '100%', maxHeight: '50vh', width: 'auto', height: 'auto', display: 'block' }}
               />
@@ -127,7 +128,7 @@ export default function PointModal({ point, onClose }) {
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
                   >
                     <img
-                      src={`/uploads/${img.filename}`}
+                      src={`${UPLOAD_BASE}/uploads/${img.filename}`}
                       alt=""
                       style={{
                         width: '100%',
@@ -156,7 +157,7 @@ export default function PointModal({ point, onClose }) {
           }}
         >
           <img
-            src={`/uploads/${lightboxImg.filename}`}
+            src={`${UPLOAD_BASE}/uploads/${lightboxImg.filename}`}
             alt=""
             style={{ maxWidth: '92vw', maxHeight: '92vh', objectFit: 'contain', borderRadius: 6 }}
           />

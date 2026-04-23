@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet'
 import L from 'leaflet'
-import { createPoint, updatePoint } from '../api'
+import { createPoint, updatePoint, UPLOAD_BASE } from '../api'
 
 // ── Geocoding autocomplete using Nominatim (no API key needed) ──
 function LocationSearch({ onSelect }) {
@@ -300,7 +300,7 @@ export default function PointForm({ point, onSave, onClose }) {
                         return (
                           <div key={img.id} style={{ position: 'relative', opacity: marked ? 0.35 : 1 }}>
                             <img
-                              src={`/uploads/${img.filename}`}
+                              src={`${UPLOAD_BASE}/uploads/${img.filename}`}
                               alt=""
                               onClick={() => !marked && setThumbnailId(img.id)}
                               style={{ width: 68, height: 68, objectFit: 'contain', borderRadius: 7, border: isThumb ? '2px solid #2563eb' : '2px solid transparent', cursor: marked ? 'default' : 'pointer', background: '#f3f4f6' }}
