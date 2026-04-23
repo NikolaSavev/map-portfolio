@@ -10,16 +10,18 @@ L.Icon.Default.mergeOptions({
 
 function createPinIcon() {
   return new L.DivIcon({
-    className: '',
+    className: 'map-pin-pulse',
     html: `<div style="
-      width:14px;height:14px;border-radius:50%;
-      background:#e74c3c;border:3px solid white;
-      box-shadow:0 2px 8px rgba(0,0,0,0.4);
+      width:18px;height:18px;border-radius:50%;
+      background:linear-gradient(135deg,#ff6b6b,#ee5a24);
+      border:3px solid white;
+      box-shadow:0 3px 12px rgba(238,90,36,0.55), 0 1px 4px rgba(0,0,0,0.25);
       cursor:pointer;
+      position:relative;
     "></div>`,
-    iconSize: [14, 14],
-    iconAnchor: [7, 7],
-    tooltipAnchor: [0, -10],
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
+    tooltipAnchor: [0, -12],
   })
 }
 
@@ -27,27 +29,30 @@ function createStackIcon(count) {
   return new L.DivIcon({
     className: '',
     html: `
-      <div style="position:relative;width:30px;height:30px;cursor:pointer;">
+      <div style="position:relative;width:36px;height:36px;cursor:pointer;">
         <div style="
-          width:18px;height:18px;border-radius:50%;
-          background:#e74c3c;border:3px solid white;
-          box-shadow:0 2px 10px rgba(0,0,0,0.4);
+          width:22px;height:22px;border-radius:50%;
+          background:linear-gradient(135deg,#ff6b6b,#ee5a24);
+          border:3px solid white;
+          box-shadow:0 3px 12px rgba(238,90,36,0.5), 0 1px 4px rgba(0,0,0,0.2);
           position:absolute;bottom:0;left:0;
         "></div>
         <div style="
           position:absolute;top:0;right:0;
-          background:#1d4ed8;color:white;
-          border-radius:50%;width:18px;height:18px;
+          background:linear-gradient(135deg,#4f46e5,#7c3aed);
+          color:white;
+          border-radius:50%;width:20px;height:20px;
           font-size:9px;font-weight:800;
           display:flex;align-items:center;justify-content:center;
           border:2px solid white;
-          box-shadow:0 1px 6px rgba(0,0,0,0.35);
+          box-shadow:0 2px 8px rgba(79,70,229,0.5);
           font-family:system-ui,sans-serif;
+          letter-spacing:-0.5px;
         ">${count}</div>
       </div>`,
-    iconSize: [30, 30],
-    iconAnchor: [9, 18],
-    popupAnchor: [6, -18],
+    iconSize: [36, 36],
+    iconAnchor: [11, 22],
+    popupAnchor: [7, -22],
   })
 }
 
@@ -84,7 +89,7 @@ function SingleMarker({ point, onPointClick }) {
           {point.thumbnail ? (
             <div style={{ background: '#f3f4f6', display: 'flex', justifyContent: 'center', alignItems: 'center', maxHeight: 130, overflow: 'hidden' }}>
               <img
-                src={`/uploads/${point.thumbnail.filename}`}
+                src={point.thumbnail.url || `/uploads/${point.thumbnail.filename}`}
                 alt={point.title}
                 style={{ width: '100%', height: 'auto', maxHeight: 130, objectFit: 'contain', display: 'block' }}
               />
@@ -149,7 +154,7 @@ function StackedMarker({ group, onPointClick }) {
               }}>
                 {point.thumbnail ? (
                   <img
-                    src={`/uploads/${point.thumbnail.filename}`}
+                    src={point.thumbnail.url || `/uploads/${point.thumbnail.filename}`}
                     alt={point.title}
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
@@ -182,12 +187,12 @@ export default function MapView({ points, onPointClick }) {
       zoomControl={false}
       style={{ height: '100vh', width: '100vw' }}
     >
-      {/* OpenStreetMap standard tiles — vibrant greens, blues, road colours */}
+      {/* CartoDB Voyager — colorful, modern, beautiful labels */}
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        subdomains="abc"
-        maxZoom={19}
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        subdomains="abcd"
+        maxZoom={20}
       />
 
       {/* Zoom controls moved to bottom-left */}

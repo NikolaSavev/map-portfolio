@@ -4,12 +4,17 @@ import MapView from '../components/MapView'
 import PointModal from '../components/PointModal'
 import { fetchPoints, fetchProfile } from '../api'
 
+function toUrl(v) {
+  if (!v) return v
+  return v.startsWith('http://') || v.startsWith('https://') ? v : `https://${v}`
+}
+
 const SOCIAL = [
   { key: 'email',     icon: '✉',  getHref: (v) => `mailto:${v}`, internal: true },
   { key: 'phone',     icon: '☎',  getHref: (v) => `tel:${v}`,    internal: true },
-  { key: 'linkedin',  icon: 'in', getHref: (v) => v,              internal: false },
-  { key: 'instagram', icon: '◎',  getHref: (v) => v,              internal: false },
-  { key: 'website',   icon: '⊕',  getHref: (v) => v,              internal: false },
+  { key: 'linkedin',  icon: 'in', getHref: toUrl,                 internal: false },
+  { key: 'instagram', icon: '◎',  getHref: toUrl,                 internal: false },
+  { key: 'website',   icon: '⊕',  getHref: toUrl,                 internal: false },
 ]
 
 function SocialLink({ icon, href, value, internal, isText }) {

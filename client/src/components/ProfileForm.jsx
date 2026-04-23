@@ -20,6 +20,35 @@ function Field({ label, hint, children }) {
   )
 }
 
+function ClearableInput({ value, onChange, placeholder }) {
+  return (
+    <div style={{ position: 'relative' }}>
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        style={{ ...inputStyle, paddingRight: value ? 32 : 11 }}
+      />
+      {value && (
+        <button
+          type="button"
+          onClick={() => onChange('')}
+          title="Remove"
+          style={{
+            position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)',
+            background: '#e5e7eb', border: 'none', borderRadius: '50%',
+            width: 20, height: 20, cursor: 'pointer', display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            fontSize: '0.6rem', color: '#6b7280', flexShrink: 0,
+          }}
+        >
+          ✕
+        </button>
+      )}
+    </div>
+  )
+}
+
 export default function ProfileForm() {
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -171,28 +200,31 @@ export default function ProfileForm() {
 
         {/* Contact */}
         <div>
-          <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#c4c4c4', marginBottom: 12 }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#c4c4c4', marginBottom: 4 }}>
             Contact &amp; Social Links
           </div>
+          <p style={{ fontSize: '0.73rem', color: '#9ca3af', marginBottom: 12 }}>
+            All fields are optional — leave empty to hide from the map page. Click ✕ to clear.
+          </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <Field label="Email">
-                <input value={profile.email || ''} onChange={(e) => set('email', e.target.value)} placeholder="hello@example.com" type="email" style={inputStyle} />
+                <ClearableInput value={profile.email || ''} onChange={(v) => set('email', v)} placeholder="hello@example.com" />
               </Field>
               <Field label="Phone">
-                <input value={profile.phone || ''} onChange={(e) => set('phone', e.target.value)} placeholder="+1 234 567 8900" style={inputStyle} />
+                <ClearableInput value={profile.phone || ''} onChange={(v) => set('phone', v)} placeholder="+1 234 567 8900" />
               </Field>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <Field label="LinkedIn URL">
-                <input value={profile.linkedin || ''} onChange={(e) => set('linkedin', e.target.value)} placeholder="https://linkedin.com/in/…" style={inputStyle} />
+                <ClearableInput value={profile.linkedin || ''} onChange={(v) => set('linkedin', v)} placeholder="https://linkedin.com/in/…" />
               </Field>
               <Field label="Instagram URL">
-                <input value={profile.instagram || ''} onChange={(e) => set('instagram', e.target.value)} placeholder="https://instagram.com/…" style={inputStyle} />
+                <ClearableInput value={profile.instagram || ''} onChange={(v) => set('instagram', v)} placeholder="https://instagram.com/…" />
               </Field>
             </div>
             <Field label="Website">
-              <input value={profile.website || ''} onChange={(e) => set('website', e.target.value)} placeholder="https://yourwebsite.com" style={inputStyle} />
+              <ClearableInput value={profile.website || ''} onChange={(v) => set('website', v)} placeholder="https://yourwebsite.com" />
             </Field>
           </div>
         </div>
