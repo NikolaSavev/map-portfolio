@@ -8,7 +8,6 @@
     "install:all": "npm install && cd server && npm install && cd ../client && npm install"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^6.0.1",
-    "vite": "^8.0.3"
+    "concurrently": "^8.2.2"
   }
 }
